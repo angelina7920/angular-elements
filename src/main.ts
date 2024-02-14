@@ -1,6 +1,21 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { bootstrapApplication, createApplication } from '@angular/platform-browser';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+import { createCustomElement } from '@angular/elements';
+import { CountComponent } from './app/ui/count/count.component';
+import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
+
+// bootstrapApplication(AppComponent, appConfig)
+//   .catch((err) => console.error(err));
+
+(async () => {
+  const app = await createApplication({
+    providers: [],
+  });
+
+  const countElement = createCustomElement(CountComponent, {
+    injector: app.injector,
+  });
+
+  customElements.define('ng-count', countElement);
+})();
