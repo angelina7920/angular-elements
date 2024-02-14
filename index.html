@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" data-critters-container>
+  <head>
+    <meta charset="utf-8" />
+    <title>Elements</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <ng-count max="6" min="-4"></ng-count>
+    <div id="changeCountEventDiv">changeCountEven emit:</div>
+
+    <script src="polyfills.js" type="module"></script>
+    <script src="main.js" type="module"></script>
+
+    <script>
+      const count = document.querySelector("ng-count");
+      const changeCountEventDiv = document.querySelector(
+        "#changeCountEventDiv"
+      );
+
+      count.addEventListener("changeCountEvent", (event) => {
+        changeCountEventDiv.innerHTML = "changeCountEven emit: " + event.detail;
+      });
+    </script>
+  </body>
+</html>
