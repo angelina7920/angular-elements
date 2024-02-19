@@ -30,4 +30,20 @@
 
 <!--
   переопред window
+
+private loadWebComponent(): void {
+    this.http
+      .get(`${this.serviceLink}`, { responseType: "text" })
+      .subscribe((scriptContent) => {
+        const script = document.createElement("script");
+        this.webComponent.script = script;
+        script.type = "text/javascript";
+        script.text = scriptContent;
+        script.src = `${this.serviceLink}`;
+
+        document.head.appendChild(script);
+
+        script.onload = () => {
+          this.createRemoteComponent();
+        };
 -->
